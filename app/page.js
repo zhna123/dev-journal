@@ -17,7 +17,7 @@ async function getPosts() {
 const getArticles = (posts) => {
   return posts.map((post) => {
     return (
-        <div key={post._id} className='h-60 border-site-gray-500 shadow-lg hover:bg-site-gray-500 flex flex-col items-center justify-center'>
+        <div key={post._id} className='h-60 p-4 text-center border-site-gray-500 shadow-lg hover:bg-site-gray-500 flex flex-col items-center justify-center'>
           <Link href={`/posts/${post._id}`} ><div className='font-medium mb-2'> {post.title} </div></Link>
           <div><Date dateString={post.date_created} /></div>
         </div>
