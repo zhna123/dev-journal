@@ -2,7 +2,10 @@ import Link from 'next/link'
 import './globals.css'
 import { Rubik } from 'next/font/google'
 
-const rubik = Rubik({ subsets: ['latin'] })
+const rubik = Rubik({ 
+  subsets: ['latin'] ,
+  variable: '--font-rubik',
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -12,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={rubik.className}>
+      <body className={`${rubik.variable} font-sans flex flex-col min-h-screen`}>
         <header className='min-h-fit flex justify-between items-center px-12 bg-teal-100'>
           <div className='font-medium py-2'><Link href={'/'}>A Developer's Journal</Link></div>
           <nav>
