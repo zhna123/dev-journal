@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${rubik.variable} font-sans flex flex-col min-h-screen`}>
         <header className='min-h-fit flex justify-between items-center px-12 bg-teal-100'>
-          <div className='font-medium py-2'><Link href={'/'}>A Developer's Journal</Link></div>
+          <div className='font-medium py-2'><Link href={'/'}>A Developer&apos;s Journal</Link></div>
           <nav>
             <div className='hidden md:flex justify-center space-x-4'>
               <a href="/" className="font-light px-3 py-2 hover:bg-white hover:text-black">Home</a>
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
         </header>
         {children}
         <footer className='h-10 flex justify-center items-center mt-auto bg-teal-600'>
-          <span>A Developer's Journal @zhna123</span>
+          <span>A Developer&apos;s Journal @zhna123</span>
         </footer> 
       </body>
     </html>
