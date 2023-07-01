@@ -3,9 +3,11 @@ import Date from "@/components/date"
 import parse from 'html-react-parser'
 import {decode} from 'html-entities';
 
+const SERVER_URL = process.env.SERVER_URL;
+
 // getStaticPaths in page router is replaced by generateStaticParams
 export async function generateStaticParams() {
-  const res = await fetch('http://localhost:3000/posts?published=true')
+  const res = await fetch(`${SERVER_URL}/posts?published=true`)
   const posts = await res.json()
  
   return posts.map((post) => ({
@@ -15,7 +17,7 @@ export async function generateStaticParams() {
 
 // This is similar to getStaticProps in page router
 async function getPost(params) {
-  const res = await fetch(`http://localhost:3000/posts/${params.id}?published=true`, { 
+  const res = await fetch(`${SERVER_URL}/posts/${params.id}?published=true`, { 
     next: { revalidate: 0 } 
   })
   const post = await res.json()
@@ -26,7 +28,7 @@ async function getPost(params) {
 // This is similar to getServerSideProps in the pages directory.
 async function getComments(postId) {
   // ??? somehow setting { cache: 'no-store' } doesn't work
-  const res = await fetch(`http://localhost:3000/posts/${postId}/comments`, { next: { revalidate: 0 } })
+  const res = await fetch(`${SERVER_URL}/posts/${postId}/comments`, { next: { revalidate: 0 } })
   const comments = await res.json()
   return comments
 }

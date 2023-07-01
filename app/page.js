@@ -2,10 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Date from '../components/date';
 
+const SERVER_URL = process.env.SERVER_URL;
+
 // this is similar to getStaticProps in page router
 async function getPosts() {
   try {
-    const res = await fetch('http://localhost:3000/posts?published=true', { next: { revalidate: 60 } })
+    const res = await fetch(`${SERVER_URL}/posts?published=true`, { next: { revalidate: 60 } })
     const posts = await res.json()
 
     return posts.slice(0, 6)
