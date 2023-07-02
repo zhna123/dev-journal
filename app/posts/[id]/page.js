@@ -1,13 +1,13 @@
-import CommentForm from "@/app/comment_form"
 import Date from "@/components/date"
 import parse from 'html-react-parser'
 import {decode} from 'html-entities';
+import CommentForm from "./comment_form";
 
 const SERVER_URL = process.env.SERVER_URL;
 
 // getStaticPaths in page router is replaced by generateStaticParams
 export async function generateStaticParams() {
-  const res = await fetch(`${SERVER_URL}/posts?published=true`)
+  const res = await fetch(`${SERVER_URL}/posts?published=true`, { next: { revalidate: 60 } })
   const posts = await res.json()
  
   return posts.map((post) => ({
@@ -17,9 +17,7 @@ export async function generateStaticParams() {
 
 // This is similar to getStaticProps in page router
 async function getPost(params) {
-  const res = await fetch(`${SERVER_URL}/posts/${params.id}?published=true`, { 
-    next: { revalidate: 0 } 
-  })
+  const res = await fetch(`${SERVER_URL}/posts/${params.id}?published=true`, { next: { revalidate: 60 } })
   const post = await res.json()
   return post
 }
@@ -28,7 +26,7 @@ async function getPost(params) {
 // This is similar to getServerSideProps in the pages directory.
 async function getComments(postId) {
   // ??? somehow setting { cache: 'no-store' } doesn't work
-  const res = await fetch(`${SERVER_URL}/posts/${postId}/comments`, { next: { revalidate: 0 } })
+  const res = await fetch(`${SERVER_URL}/posts/${postId}/comments`, { next: { revalidate: 1 } })
   const comments = await res.json()
   return comments
 }
@@ -71,7 +69,7 @@ export default async function Post({ params }) {
         <article className="prose md:prose-lg mb-8">{ parse(decodedContent) }</article>
       </div>
       <div className="p-12">
-        <CommentForm postId = {post._id}/>
+        <CommentForm postId = {post._id} serverUrl = {SERVER_URL}/>
         <div className="text-lg mb-2 font-medium">Comments</div>
         {allComments(comments)}
       </div>
