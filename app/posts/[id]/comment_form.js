@@ -5,24 +5,25 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import { useEffect } from 'react';
 
-const SERVER_URL = process.env.SERVER_URL;
-
-export default function CommentForm({ postId }) {
+export default function CommentForm({ postId, serverUrl }) {
   const { register, handleSubmit, reset, formState, formState: { isSubmitSuccessful, errors } } 
     = useForm({ defaultValues: { content: "", author_name: "" } });
 
   const router = useRouter()
   
   const onSubmit = async (data) => {
+    const url = `${serverUrl}/posts/${postId}/comments`;
     try {
-      const res = await fetch(`${SERVER_URL}/posts/${postId}/comments`, {
+      const res = await fetch(url, {
         method: "POST",
         mode: 'cors',
         body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json' }
       })
       if (res.ok) {
-        router.refresh()
+        setTimeout(() => {
+          router.refresh()
+        }, 1000);
       } else {
         const result = await res.json();
         throw new Error(result)

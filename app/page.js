@@ -41,10 +41,9 @@ export default async function Home() {
               width={144}
               alt=""
             />
-        <div className='text-slate-500 font-light text-center'>
+        <div className='text-slate-500 font-light text-center px-12'>
           Hello. I am Na, a web developer. <br />
-          I enjoy learning new things, and I created this webiste to share my journey. <br />
-          Welcome! <br />
+          Welcome to my website! <br />
         </div>
       </div>
       <div className='p-12'>
