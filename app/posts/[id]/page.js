@@ -26,7 +26,7 @@ async function getPost(params) {
 // This is similar to getServerSideProps in the pages directory.
 async function getComments(postId) {
   // ??? somehow setting { cache: 'no-store' } doesn't work
-  const res = await fetch(`${SERVER_URL}/posts/${postId}/comments`, { next: { revalidate: 1 } })
+  const res = await fetch(`${SERVER_URL}/posts/${postId}/comments`, { next: { revalidate: 0 } })
   const comments = await res.json()
   return comments
 }
