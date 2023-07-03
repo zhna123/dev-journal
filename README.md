@@ -16,6 +16,8 @@ npm run dev
 
 * Style - tailwindCSS
 
+* Form - React Hook Form
+
 
 
 

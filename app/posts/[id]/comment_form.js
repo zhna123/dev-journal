@@ -21,9 +21,7 @@ export default function CommentForm({ postId, serverUrl }) {
         headers: { 'Content-Type': 'application/json' }
       })
       if (res.ok) {
-        setTimeout(() => {
-          router.refresh()
-        }, 1000);
+        router.refresh()
       } else {
         const result = await res.json();
         throw new Error(result)
