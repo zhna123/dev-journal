@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 It calls restAPI `dev-journal-api` [See repo](https://github.com/zhna123/dev-journal-api)
 
+Admin dashboard [repo](https://github.com/zhna123/dev-journal-admin)
+
 ## Run the development server:
 
 ```
