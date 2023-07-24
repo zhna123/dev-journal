@@ -46,7 +46,7 @@ export default async function Home() {
           Welcome to my website! <br />
         </div>
       </div>
-      <div className='p-12'>
+      <div className='p-12 bg-site-gray-500'>
         <p className='pb-4 text-xl font-medium'>Categories</p>
         <div className='grid grid-cols-1 md:grid-cols-4 gap-10 p-12 bg-teal-500'>
           <div className='bg-white h-40'>01</div>

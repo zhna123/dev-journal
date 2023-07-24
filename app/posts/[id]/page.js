@@ -61,7 +61,7 @@ export default async function Post({ params }) {
   ) : null;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-site-gray-500">
       <div className="min-h-fit bg-white p-12">
         <div className="text-4xl mb-4">{post.title}</div>
         <div className="mb-6 font-light"><Date dateString={post.date_created} /></div>

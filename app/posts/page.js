@@ -30,7 +30,7 @@ export default async function Posts() {
   const posts = await getPosts()
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-site-gray-500">
       <div className='p-12'>
         <div className='pb-4 text-xl font-medium'>
           All Articles
